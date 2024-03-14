@@ -2,18 +2,18 @@
 
 newData=`curl -s https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson`
 echo $newData | jq '.features[]' | jq '[.properties.place, .geometry.coordinates[0,1], .properties.mag]' | jq '((.[2]|tostring) + "|" + (.[1]|tostring) + "|" + .[0] + "|" + (.[3]|tostring))' | jq -r . > hour.chi
-./cliapp -i hour.chi --dataset-name 'all_hour'
+./cliapp -i hour.chi --dataset-name 'all-hour'
 rm hour.chi
-echo "Dataset 'all_hour' created."
+echo "Dataset 'all-hour' created."
 
 newData=`curl -s https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson`
 echo $newData | jq '.features[]' | jq '[.properties.place, .geometry.coordinates[0,1], .properties.mag]' | jq '((.[2]|tostring) + "|" + (.[1]|tostring) + "|" + .[0] + "|" + (.[3]|tostring))' | jq -r . > hour.chi
-./cliapp -i hour.chi --dataset-name 'all_day'
+./cliapp -i hour.chi --dataset-name 'all-day'
 rm hour.chi
-echo "Dataset 'all_day' created."
+echo "Dataset 'all-day' created."
 
 newData=`curl -s https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson`
 echo $newData | jq '.features[]' | jq '[.properties.place, .geometry.coordinates[0,1], .properties.mag]' | jq '((.[2]|tostring) + "|" + (.[1]|tostring) + "|" + .[0] + "|" + (.[3]|tostring))' | jq -r . > hour.chi
-./cliapp -i hour.chi --dataset-name 'all_week'
+./cliapp -i hour.chi --dataset-name 'all-week'
 rm hour.chi
-echo "Dataset 'all_week' created."
+echo "Dataset 'all-week' created."

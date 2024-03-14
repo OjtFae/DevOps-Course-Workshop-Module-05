@@ -1,0 +1,28 @@
+services:
+  cliapp:
+    image: cliapp
+    build: 
+      context: .
+      dockerfile: dockerfiles/Dockerfile.cliapp
+    volumes:
+      - VolumeA:/opt/chimera/data
+  webapp:
+    image: webapp
+    build: 
+      context: .
+      dockerfile: dockerfiles/Dockerfile.webapp
+    environment:
+      PORT: "80"
+    expose:
+      - "8080"
+    ports:
+      - target: 80
+        host_ip: 127.0.0.1
+        published: "8080"
+        protocol: tcp
+        mode: host
+    volumes:
+      - VolumeA:/opt/chimera/data
+
+volumes:
+  VolumeA:
